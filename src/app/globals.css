@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  /* Color tokens: deep newsprint-navy surface, brass/gold "light" accent (the brand's namesake),
+     desaturated crimson for urgent/sports tags. Chosen to avoid the generic cream+terracotta
+     and pure-black+neon defaults. */
+  --ln-bg: #12151c;
+  --ln-surface: #1b2029;
+  --ln-surface-raised: #232a35;
+  --ln-hairline: #323a47;
+
+  --ln-gold: #d9a441;
+  --ln-gold-dim: #a67e34;
+  --ln-crimson: #b23a48;
+
+  --ln-text: #ede9e0;
+  --ln-text-muted: #9ca0aa;
+  --ln-text-faint: #6b7280;
+
+  --font-display: "Fraunces", "Noto Serif Devanagari", ui-serif, Georgia, serif;
+  --font-body: "Source Serif 4", "Noto Serif Devanagari", ui-serif, Georgia, serif;
+  --font-sans: "Inter", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-bg: var(--ln-bg);
+  --color-surface: var(--ln-surface);
+  --color-surface-raised: var(--ln-surface-raised);
+  --color-hairline: var(--ln-hairline);
+  --color-gold: var(--ln-gold);
+  --color-gold-dim: var(--ln-gold-dim);
+  --color-crimson: var(--ln-crimson);
+  --color-ink: var(--ln-text);
+  --color-ink-muted: var(--ln-text-muted);
+  --color-ink-faint: var(--ln-text-faint);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-sans: var(--font-sans);
+  --font-label: var(--font-label);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ln-bg);
+  color: var(--ln-text);
+  font-family: var(--font-body);
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+  25% { transform: scaleY(1.05) scaleX(0.97); opacity: 0.96; }
+  50% { transform: scaleY(0.97) scaleX(1.02); opacity: 1; }
+  75% { transform: scaleY(1.03) scaleX(0.98); opacity: 0.94; }
+}
+
+.flame-live {
+  animation: flame-flicker 2.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flame-live {
+    animation: none;
+  }
+}
+
+::selection {
+  background: var(--ln-gold);
+  color: var(--ln-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ln-gold);
+  outline-offset: 2px;
+}
